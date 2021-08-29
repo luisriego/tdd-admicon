@@ -7,6 +7,7 @@
         "php": ">=8.0.1",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "ext-json": "*",
         "composer/package-versions-deprecated": "1.11.99.3",
         "doctrine/doctrine-bundle": "^2.4",
         "doctrine/doctrine-migrations-bundle": "^3.1",
@@ -19,6 +20,7 @@
         "symfony/runtime": "5.3.*",
         "symfony/security-bundle": "5.3.*",
         "symfony/uid": "5.3.*",
+        "symfony/validator": "5.3.*",
         "symfony/yaml": "5.3.*"
     },
     "require-dev": {
