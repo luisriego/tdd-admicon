@@ -5,19 +5,16 @@ declare(strict_types=1);
 namespace App\Controller\User;
 
 use App\Entity\User;
-use App\Repository\UserRepository;
+use App\Services\User\RegisterService;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class RegisterController
 {
-    private UserPasswordHasherInterface $passwordHasher;
-
-    public function __construct(private UserRepository $userRepository, UserPasswordHasherInterface $passwordHasher)
+    public function __construct(private RegisterService $registerService)
     {
-        $this->passwordHasher = $passwordHasher;
     }
 
     public function __invoke(Request $request): JsonResponse
@@ -36,11 +33,8 @@ class RegisterController
             throw new BadRequestHttpException('password is mandatory');
         }
 
-        $user = new User($data['name'], $data['email']);
-        $user->setPassword($this->passwordHasher->hashPassword($user, $data['password']));
+        $user = $this->registerService->__invoke($data['name'], $data["email"], $data["password"]);
 
-        $this->userRepository->save($user);
-
-        return new JsonResponse(null, JsonResponse::HTTP_CREATED);
+        return new JsonResponse(null, Response::HTTP_CREATED);
     }
 }
