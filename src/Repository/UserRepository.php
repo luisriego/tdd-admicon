@@ -15,6 +15,19 @@ class UserRepository extends DoctrineBaseRepository
         return User::class;
     }
 
+    public function findOneByEmail(string $email): ?User
+    {
+        return $this->objectRepository->find($email);
+    }
+
+    public function findOneByEmailWithDQL(string $email): ?User
+    {
+        $query = $this->getEntityManager()->createQuery('SELECT u FROM App\Entity\User u WHERE u.email = :email');
+        $query->setParameter('email', $email);
+
+        return $query->getOneOrNullResult();
+    }
+
     public function save(User $user): void
     {
         $this->saveEntity($user);

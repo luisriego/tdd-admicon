@@ -12,7 +12,7 @@ class GetUsersControllerTest extends WebTestCase
 {
     use RecreateDatabaseTrait;
 
-    private const ENDPOINT = '/api/v1/users/user/{id}';
+    private const ENDPOINT = '/api/v1/users/user';
 
     private static ?KernelBrowser $client = null;
 
@@ -39,21 +39,21 @@ class GetUsersControllerTest extends WebTestCase
 
     public function testGetUserByEmail(): void
     {
-        self::$client->request(Request::METHOD_GET, \sprintf('%s?email=peter@api.com', self::ENDPOINT));
+        self::$client->request(Request::METHOD_GET, \sprintf('%s/peter@api.com', self::ENDPOINT));
 
         $response = self::$client->getResponse();
 
         self::assertEquals(JsonResponse::HTTP_OK, $response->getStatusCode());
-//        $responseData = \json_decode($response->getContent(), true);
-//        self::assertEquals('Peter', $responseData['user']['name']);
+        $responseData = \json_decode($response->getContent(), true);
+        self::assertEquals('Peter', $responseData['user']['name']);
     }
-//
-//    public function testGetUserForNonExistingEmail(): void
-//    {
-//        self::$authenticatedClient->request(Request::METHOD_GET, \sprintf('%s?email=brian@api.com', self::ENDPOINT));
-//
-//        $response = self::$authenticatedClient->getResponse();
-//
-//        self::assertEquals(JsonResponse::HTTP_NOT_FOUND, $response->getStatusCode());
-//    }
+
+    public function testGetUserForNonExistingEmail(): void
+    {
+        self::$client->request(Request::METHOD_GET, \sprintf('%s/brian@api.com', self::ENDPOINT));
+
+        $response = self::$client->getResponse();
+
+        self::assertEquals(JsonResponse::HTTP_NOT_FOUND, $response->getStatusCode());
+    }
 }
