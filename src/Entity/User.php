@@ -15,6 +15,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private string $name;
     private string $email;
     private ?string $password;
+    private bool $active;
+    private ?string $token;
+    private ?string $resetPasswordToken;
+    private \DateTime $createdOn;
+    private \DateTime $updatedOn;
 
     public function __construct(string $name, string $email)
     {
@@ -22,6 +27,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->name = $name;
         $this->email = $email;
         $this->password = null;
+        $this->active = false;
+        $this->token = null;
+        $this->resetPasswordToken = null;
+        $this->createdOn = new \DateTime();
+        $this->markAsUpdated();
     }
 
     public function getId(): string
@@ -59,6 +69,46 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->password = $password;
     }
 
+    public function isActive(): bool
+    {
+        return $this->active;
+    }
+
+    public function setActive(bool $active): void
+    {
+        $this->active = $active;
+    }
+
+    public function getToken(): ?string
+    {
+        return $this->token;
+    }
+
+    public function setToken(?string $token): void
+    {
+        $this->token = $token;
+    }
+
+    public function getResetPasswordToken(): ?string
+    {
+        return $this->resetPasswordToken;
+    }
+
+    public function setResetPasswordToken(?string $resetPasswordToken): void
+    {
+        $this->resetPasswordToken = $resetPasswordToken;
+    }
+
+    public function getCreatedOn(): \DateTime
+    {
+        return $this->createdOn;
+    }
+
+    public function getUpdatedOn(): \DateTime
+    {
+        return $this->updatedOn;
+    }
+
     public function getSalt()
     {
         // TODO: Implement getSalt() method.
@@ -77,5 +127,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __call(string $name, array $arguments)
     {
         // TODO: Implement @method string getUserIdentifier()
+    }
+
+    public function markAsUpdated(): void
+    {
+        $this->updatedOn = new \DateTime();
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'user' => [
+                'id' => $this->id,
+                'name' => $this->name,
+                'email' => $this->email,
+                'active' => $this->active,
+            ]
+        ];
     }
 }

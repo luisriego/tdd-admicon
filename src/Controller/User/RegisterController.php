@@ -19,14 +19,6 @@ class RegisterController
     {
         $user = $this->registerService->__invoke($request);
 
-        return new JsonResponse(
-            [
-                'user' => [
-                    'id' => $user->getId(),
-                    'name' => $user->getName(),
-                    'email' => $user->getEmail(),
-                ]
-            ],Response::HTTP_CREATED
-        );
+        return new JsonResponse($user->toArray(),Response::HTTP_CREATED);
     }
 }

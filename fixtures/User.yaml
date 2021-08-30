@@ -1,0 +1,5 @@
+App\Entity\User:
+  User-0:
+    __construct:
+      name: Peter
+      email: peter@api.com

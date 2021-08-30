@@ -39,8 +39,10 @@ class RegisterControllerTest extends WebTestCase
         self::$client->request(Request::METHOD_POST, self::ENDPOINT, [], [], [], \json_encode($payload));
 
         $response = self::$client->getResponse();
+        $responseData = \json_decode($response->getContent(), true);
 
         self::assertEquals(JsonResponse::HTTP_CREATED, $response->getStatusCode());
+        self::assertArrayHasKey('active', $responseData['user']);
     }
 
     public function testRegisterUserWithNoName(): void

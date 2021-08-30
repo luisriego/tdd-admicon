@@ -8,16 +8,15 @@ use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
-class UserRepository extends ServiceEntityRepository
+class UserRepository extends DoctrineBaseRepository
 {
-    public function __construct(ManagerRegistry $managerRegistry)
+    protected static function entityClass(): string
     {
-        parent::__construct($managerRegistry, User::class);
+        return User::class;
     }
 
     public function save(User $user): void
     {
-        $this->_em->persist($user);
-        $this->_em->flush();
+        $this->saveEntity($user);
     }
 }
