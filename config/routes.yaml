@@ -14,6 +14,11 @@ api_register_user:
   methods: [POST]
 
 api_get_user_by_id:
-  path: /api/v1/users/user/{email}
+  path: /api/v1/users/user/{id}
+  controller: App\Controller\User\GetByIdController
+  methods: [GET]
+
+api_get_user_by_email:
+  path: /api/v1/users/user-by-email/{email}
   controller: App\Controller\User\GetByEmailController
   methods: [GET]

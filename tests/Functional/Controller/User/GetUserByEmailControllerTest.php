@@ -8,7 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
-class GetUsersControllerTest extends WebTestCase
+class GetUserByEmailControllerTest extends WebTestCase
 {
     use RecreateDatabaseTrait;
 
@@ -26,17 +26,6 @@ class GetUsersControllerTest extends WebTestCase
         }
     }
 
-//    public function testRegisterUser(): void
-//    {
-//        self::$client->request(Request::METHOD_GET, \sprintf('%s?email=peter@api.com', self::ENDPOINT));
-//
-//        $response = self::$client->getResponse();
-//        $responseData = \json_decode($response->getContent(), true);
-//
-//        self::assertEquals(JsonResponse::HTTP_CREATED, $response->getStatusCode());
-//        self::assertArrayHasKey('active', $responseData['user']);
-//    }
-
     public function testGetUserByEmail(): void
     {
         self::$client->request(Request::METHOD_GET, \sprintf('%s/peter@api.com', self::ENDPOINT));
@@ -46,7 +35,7 @@ class GetUsersControllerTest extends WebTestCase
         self::assertEquals(JsonResponse::HTTP_OK, $response->getStatusCode());
         $responseData = \json_decode($response->getContent(), true);
         self::assertEquals('Peter', $responseData['user']['name']);
-    }
+    }_
 
     public function testGetUserForNonExistingEmail(): void
     {

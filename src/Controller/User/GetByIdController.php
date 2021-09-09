@@ -9,16 +9,16 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-class GetByEmailController
+class GetByIdController
 {
     public function __construct(private UserRepository $userRepository)
     {
     }
 
-    public function __invoke(Request $request, string $email): JsonResponse
+    public function __invoke(Request $request, string $id): JsonResponse
     {
-        if (null === $user = $this->userRepository->findOneByEmailWithDQL($email)) {
-            throw new NotFoundHttpException(\sprintf('User with email %s not found', $email));
+        if (null === $user = $this->userRepository->findOneByIdWithDQL($id)) {
+            throw new NotFoundHttpException(\sprintf('User with Id: %s not found', $id));
 //            return new JsonResponse(null,JsonResponse::HTTP_NOT_FOUND);
         }
 

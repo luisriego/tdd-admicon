@@ -28,7 +28,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->email = $email;
         $this->password = null;
         $this->active = false;
-        $this->token = null;
+        $this->token = \sha1(\uniqid());
         $this->resetPasswordToken = null;
         $this->createdOn = new \DateTime();
         $this->markAsUpdated();
@@ -142,6 +142,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 'name' => $this->name,
                 'email' => $this->email,
                 'active' => $this->active,
+                'registeredOn' => $this->createdOn->format(\DateTime::RFC3339),
             ]
         ];
     }
