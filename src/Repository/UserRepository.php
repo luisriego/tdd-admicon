@@ -8,16 +8,31 @@ use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
-class UserRepository extends ServiceEntityRepository
+class UserRepository extends DoctrineBaseRepository
 {
-    public function __construct(ManagerRegistry $managerRegistry)
+    protected static function entityClass(): string
     {
-        parent::__construct($managerRegistry, User::class);
+        return User::class;
+    }
+
+    public function findOneByIdWithDQL(string $id): ?User
+    {
+        $query = $this->getEntityManager()->createQuery('SELECT u FROM App\Entity\User u WHERE u.id = :id');
+        $query->setParameter('id', $id);
+
+        return $query->getOneOrNullResult();
+    }
+
+    public function findOneByEmailWithDQL(string $email): ?User
+    {
+        $query = $this->getEntityManager()->createQuery('SELECT u FROM App\Entity\User u WHERE u.email = :email');
+        $query->setParameter('email', $email);
+
+        return $query->getOneOrNullResult();
     }
 
     public function save(User $user): void
     {
-        $this->_em->persist($user);
-        $this->_em->flush();
+        $this->saveEntity($user);
     }
 }

@@ -6,5 +6,18 @@
         <field name="name" length="20" />
         <field name="email" length="100" />
         <field name="password" length="100" nullable="true" />
+        <field name="active" type="boolean" />
+        <field name="token" length="100" nullable="true" />
+        <field name="resetPasswordToken" length="100" nullable="true" />
+        <field name="createdOn" type="datetime" />
+        <field name="updatedOn" type="datetime" />
+
+        <unique-constraints>
+            <unique-constraint columns="email" name="U_user_email"/>
+        </unique-constraints>
+
+        <lifecycle-callbacks>
+            <lifecycle-callback type="preUpdate" method="markAsUpdated"/>
+        </lifecycle-callbacks>
     </entity>
 </doctrine-mapping>
