@@ -1,0 +1,18 @@
+api_register:
+  path: /api/v1/register
+  controller: App\Controller\RegisterAction
+  methods: [POST]
+
+api_login_check:
+  path: /api/v1/login-check
+  methods: [POST]
+
+api_get_user:
+  path: /api/v1/users
+  controller: App\Controller\GetUserAction
+  methods: [GET]
+
+api_change_password:
+  path: /api/v1/users/{id}/change-password
+  controller: App\Controller\ChangePasswordAction
+  methods: [POST]
