@@ -26,3 +26,6 @@ services:
     App\Controller\Listener\JsonExceptionResponseTransformerListener:
         tags:
             - { name: kernel.event_listener, event: kernel.exception, method: onKernelException, priority: 100 }
+
+    App\Service\User\EncoderServiceInterface:
+        class: App\Service\User\EncoderService

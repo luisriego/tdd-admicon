@@ -22,3 +22,8 @@ api_get_user_by_email:
   path: /api/v1/users/user-by-email/{email}
   controller: App\Controller\User\GetByEmailController
   methods: [GET]
+
+api_user_change_password:
+  path: /api/v1/users/{id}/change-password
+  controller: App\Controller\User\ChangePasswordController
+  methods: [PUT]

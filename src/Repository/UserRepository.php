@@ -5,8 +5,7 @@ declare(strict_types=1);
 namespace App\Repository;
 
 use App\Entity\User;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Persistence\ManagerRegistry;
+use App\Exception\UserNotFoundException;
 
 class UserRepository extends DoctrineBaseRepository
 {
@@ -21,6 +20,18 @@ class UserRepository extends DoctrineBaseRepository
         $query->setParameter('id', $id);
 
         return $query->getOneOrNullResult();
+    }
+
+    public function findOneByIdOrFail(string $id): ?User
+    {
+        $query = $this->getEntityManager()->createQuery('SELECT u FROM App\Entity\User u WHERE u.id = :id');
+        $query->setParameter('id', $id);
+
+        if (null === $user = $query->getOneOrNullResult()) {
+            throw UserNotFoundException::fromId($id);
+        }
+
+        return $user;
     }
 
     public function findOneByEmailWithDQL(string $email): ?User

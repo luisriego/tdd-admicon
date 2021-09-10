@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Services\User;
+namespace App\Service\User;
 
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-class EncoderService
+class EncoderService implements EncoderServiceInterface
 {
       public function __construct(private UserPasswordHasherInterface $userPasswordHasher) {}
 

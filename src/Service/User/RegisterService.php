@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\User;
+namespace App\Service\User;
 
 use App\Entity\User;
 use App\Http\DTO\RegisterRequest;
@@ -8,7 +8,7 @@ use App\Repository\UserRepository;
 
 class RegisterService
 {
-    public function __construct(private UserRepository $userRepository, private EncoderService  $encoderService)
+    public function __construct(private UserRepository $userRepository, private EncoderServiceInterface  $encoderService)
     { }
 
     public function __invoke(RegisterRequest $request): User

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Functional\Controller\User;
+namespace App\Tests\Functional\Controller\User;
 
 use App\Tests\Functional\FunctionalTestBase;
 use Hautelook\AliceBundle\PhpUnit\RecreateDatabaseTrait;

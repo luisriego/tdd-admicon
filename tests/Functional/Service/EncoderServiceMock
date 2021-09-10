@@ -1,0 +1,21 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Functional\Service;
+
+use App\Service\User\EncoderServiceInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
+
+class EncoderServiceMock implements EncoderServiceInterface
+{
+    public function generateEncodedPassword(UserInterface $user, string $password): string
+    {
+        return "";
+    }
+
+    public function checkIfPasswordIsValid(UserInterface $user, string $password): bool
+    {
+        return true;
+    }
+}
