@@ -71,7 +71,13 @@ class User implements UserInterface
     {
     }
 
+    // This method will be deprecated and replaced with getUserIdentifier()
     public function getUsername(): string
+    {
+        return $this->email;
+    }
+
+    public function getUserIdentifier(): string
     {
         return $this->email;
     }
@@ -89,4 +95,5 @@ class User implements UserInterface
             'createdOn' => $this->createdOn->format(\DateTime::RFC3339),
         ];
     }
+
 }

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Controller;
+namespace App\Controller\User;
 
 use App\Http\DTO\RegisterRequest;
-use App\Service\RegisterActionService;
+use App\Service\User\RegisterActionService;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class RegisterAction

@@ -2,5 +2,5 @@ imports:
   - { resource: services.yaml }
 
 services:
-  App\Service\EncoderServiceInterface:
+  App\Service\User\EncoderServiceInterface:
     class: App\Tests\Functional\Service\EncoderServiceMock

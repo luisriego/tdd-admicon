@@ -19,5 +19,5 @@ services:
         tags:
             - { name: kernel.event_listener, event: kernel.exception, method: onKernelException, priority: 100 }
 
-    App\Service\EncoderServiceInterface:
-        class: App\Service\EncoderService
+    App\Service\User\EncoderServiceInterface:
+        class: App\Service\User\EncoderService

@@ -6,6 +6,7 @@ namespace App\Tests\Functional;
 
 use App\Repository\UserRepository;
 use Doctrine\DBAL\Connection;
+use Doctrine\DBAL\Exception;
 use Hautelook\AliceBundle\PhpUnit\RecreateDatabaseTrait;
 use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;

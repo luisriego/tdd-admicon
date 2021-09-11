@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional\Service;
 
-use App\Service\EncoderServiceInterface;
+use App\Service\User\EncoderServiceInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 class EncoderServiceMock implements EncoderServiceInterface

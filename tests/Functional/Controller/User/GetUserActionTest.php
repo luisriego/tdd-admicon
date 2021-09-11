@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Functional\Controller;
+namespace App\Tests\Functional\Controller\User;
 
 use App\Tests\Functional\FunctionalTestBase;
 use Hautelook\AliceBundle\PhpUnit\RecreateDatabaseTrait;

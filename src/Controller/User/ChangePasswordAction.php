@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Controller;
+namespace App\Controller\User;
 
 use App\Http\DTO\ChangePasswordRequest;
-use App\Service\ChangePasswordActionService;
+use App\Service\User\ChangePasswordActionService;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class ChangePasswordAction

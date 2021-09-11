@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Controller;
+namespace App\Controller\User;
 
 use App\Http\DTO\GetUserRequest;
-use App\Service\GetUserActionService;
+use App\Service\User\GetUserActionService;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class GetUserAction

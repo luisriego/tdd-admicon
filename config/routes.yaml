@@ -1,6 +1,6 @@
 api_register:
   path: /api/v1/register
-  controller: App\Controller\RegisterAction
+  controller: App\Controller\User\RegisterAction
   methods: [POST]
 
 api_login_check:
@@ -9,10 +9,10 @@ api_login_check:
 
 api_get_user:
   path: /api/v1/users
-  controller: App\Controller\GetUserAction
+  controller: App\Controller\User\GetUserAction
   methods: [GET]
 
 api_change_password:
   path: /api/v1/users/{id}/change-password
-  controller: App\Controller\ChangePasswordAction
+  controller: App\Controller\User\ChangePasswordAction
   methods: [POST]
